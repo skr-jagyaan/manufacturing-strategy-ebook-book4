@@ -1,11 +1,11 @@
 /* ============================================================
-   WHY GREAT MANUFACTURERS STAY INVISIBLE
+   BOOK_TITLE
    app.js — SPA Brain
    Handles routing, navigation, transitions, localStorage
    ============================================================ */
 
 // ── CONSTANTS ──
-const RAILWAY_URL = 'https://manufacturing-book2-65462349033.asia-south1.run.app';
+const RAILWAY_URL = 'BOOK_CLOUD_RUN_URL';
 const SHELF_URL   = 'https://manufacturing-shelf-65462349033.asia-south1.run.app'; // Redirect here if no valid session
 const TOTAL_CHAPTERS = 9;
 
@@ -198,7 +198,7 @@ async function loadChapter(num) {
 
   try {
     // Dynamically import the chapter module
-    const module = await import(`/chapters/ch${num}.js?v=2`);
+    const module = await import(`/chapters/ch${num}.js?v=BOOK_VERSION`);
     currentChapter = module.default;
 
     // Update bar
@@ -242,7 +242,7 @@ async function loadChapter(num) {
 async function loadOnboarding(startScreen = 0) {
   showLoader();
   try {
-    const module = await import('/onboarding/onboarding.js?v=2');
+    const module = await import('/onboarding/onboarding.js?v=BOOK_VERSION');
     currentChapter = module.default;
 
     // Push state so browser back doesn't trigger route() back to shelf
@@ -250,7 +250,7 @@ async function loadOnboarding(startScreen = 0) {
       history.pushState({}, '', '/read');
     }
 
-    document.getElementById('bar-book').textContent = 'Stop Planning, Start Winning';
+    document.getElementById('bar-book').textContent = 'BOOK_TITLE';
     document.getElementById('bar-sep').style.display = 'none';
     document.getElementById('bar-ch').textContent = '';
     document.getElementById('bar-shelf-btn').style.display = 'inline-flex';
@@ -283,12 +283,12 @@ async function loadOnboarding(startScreen = 0) {
 async function loadBackmatter() {
   showLoader();
   try {
-    const module = await import('/chapters/backmatter.js?v=2');
+    const module = await import('/chapters/backmatter.js?v=BOOK_VERSION');
     currentChapter = module.default;
 
     document.getElementById('bar-book').textContent = 'Book Two';
     document.getElementById('bar-sep').style.display = '';
-    document.getElementById('bar-ch').textContent = 'Stop Planning, Start Winning';
+    document.getElementById('bar-ch').textContent = 'BOOK_TITLE';
     document.getElementById('bar-shelf-btn').style.display = 'inline-flex';
 
     buildScreens(currentChapter.screens);
@@ -307,7 +307,7 @@ async function loadBackmatter() {
 async function loadDiagnosis() {
   showLoader();
   try {
-    const module = await import('/chapters/diagnosis.js?v=2');
+    const module = await import('/chapters/diagnosis.js?v=BOOK_VERSION');
     const diag = module.default;
 
     document.getElementById('bar-book').textContent = 'Book Two';
@@ -422,7 +422,7 @@ function renderScreen(screen, idx, total) {
             <div class="loading-state" id="loading-state">
               <div class="agent-avatar">V</div>
               <div class="loading-text">
-                Arjun is reviewing your notes
+                COMPANION_NAME is reviewing your notes
                 <span class="loading-dots"><span>.</span><span>.</span><span>.</span></span>
               </div>
             </div>
@@ -430,7 +430,7 @@ function renderScreen(screen, idx, total) {
             <div class="agent-response" id="agent-response">
               <div class="agent-header-row">
                 <div class="agent-avatar">V</div>
-                <div class="agent-label">Arjun <span>· sharing his notes</span></div>
+                <div class="agent-label">COMPANION_NAME <span>· sharing his notes</span></div>
               </div>
               <div class="agent-items">
                 <div class="agent-item" id="ai-1"><div class="agent-item-num">1</div><div class="agent-item-text" id="ai-text-1"></div></div>
@@ -554,13 +554,13 @@ function renderScreen(screen, idx, total) {
 
             <div class="loading-state" id="loading-state">
               <div class="agent-avatar">V</div>
-              <div class="loading-text">Arjun is writing his final notes<span class="loading-dots"><span>.</span><span>.</span><span>.</span></span></div>
+              <div class="loading-text">COMPANION_NAME is writing his final notes<span class="loading-dots"><span>.</span><span>.</span><span>.</span></span></div>
             </div>
 
             <div class="agent-response" id="agent-response">
               <div class="agent-header-row">
                 <div class="agent-avatar">V</div>
-                <div class="agent-label">Arjun <span>· his final notes</span></div>
+                <div class="agent-label">COMPANION_NAME <span>· his final notes</span></div>
               </div>
               <div class="agent-items">
                 <div class="agent-item" id="ai-1"><div class="agent-item-num">1</div><div class="agent-item-text" id="ai-text-1"></div></div>
@@ -723,8 +723,8 @@ function renderOnboardingScreen(screen, idx, total, prevBtn) {
         <div class="screen-body center">
           <div class="cover-wrap">
             <div class="cover-series">The Manufacturing Strategy Series · Book Two of Four</div>
-            <div class="cover-title">Stop Planning, Start Winning</div>
-            <div class="cover-subtitle">Making Strategic Choices Competitors Can't Copy</div>
+            <div class="cover-title">BOOK_TITLE</div>
+            <div class="cover-subtitle">BOOK_SUBTITLE</div>
             <div class="cover-rule"></div>
             <div class="cover-author">Sudharsan K R</div>
             <div class="cover-role">Business Model &amp; Strategy Advisor</div>
@@ -740,8 +740,8 @@ function renderOnboardingScreen(screen, idx, total, prevBtn) {
       return `
         <div class="screen-body">
           <div class="copy-wrap">
-            <div class="copy-title">Stop Planning, Start Winning</div>
-            <div class="copy-sub">Making Strategic Choices Competitors Can't Copy</div>
+            <div class="copy-title">BOOK_TITLE</div>
+            <div class="copy-sub">BOOK_SUBTITLE</div>
             <div class="copy-rule"></div>
             <p class="copy-p">Copyright © 2026 by Sudharsan K R</p>
             <p class="copy-p">All rights reserved. No part of this publication may be reproduced, distributed, or transmitted in any form or by any means — including photocopying, recording, or other electronic or mechanical methods — without the prior written permission of the author, except in the case of brief quotations embodied in critical reviews and certain other non-commercial uses permitted by copyright law.</p>
@@ -854,7 +854,7 @@ function renderOnboardingScreen(screen, idx, total, prevBtn) {
         <div class="screen-body center">
           <div class="vikram-wrap">
             <div class="vikram-disclaimer">
-              Arjun is a fictional character powered by an AI agent. Any resemblance to actual persons, businesses, or events is purely coincidental. Arjun's responses are AI-generated and do not constitute professional business or strategy advice.
+              COMPANION_NAME is a fictional character powered by an AI agent. Any resemblance to actual persons, businesses, or events is purely coincidental. COMPANION_NAME's responses are AI-generated and do not constitute professional business or strategy advice.
             </div>
             <div class="vikram-card" id="vikram-card">
               <div class="vikram-header">
@@ -1134,7 +1134,7 @@ async function submitBookTakeaways(nextScreenIdx) {
         userRev:      user.rev,
         userSector:   user.sector,
         chapter:      'book',
-        chapterTitle: 'Stop Planning, Start Winning — Full Book',
+        chapterTitle: 'BOOK_TITLE — Full Book',
         takeaways:    [t1, t2, t3],
         isBookLevel:  true
       })
