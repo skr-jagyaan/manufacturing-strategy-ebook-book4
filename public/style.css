@@ -1,0 +1,1200 @@
+/* ============================================================
+   WHY GREAT MANUFACTURERS STAY INVISIBLE
+   Design System — style.css
+   Single source of truth for all UI components
+   ============================================================ */
+
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── DESIGN TOKENS ── */
+:root {
+  --white: #ffffff;
+  --bg: #f8f9fa;
+  --ink: #202124;
+  --ink-2: #5f6368;
+  --ink-3: #757b82;       /* WCAG 4.5:1 compliant on white */
+  --blue: #1a73e8;
+  --blue-light: #e8f0fe;
+  --gold: #b8722a;        /* only for "The Reality" label */
+  --rule: #e8eaed;
+}
+
+/* ── BASE ── */
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: var(--white);
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: var(--ink);
+}
+
+/* ── SHELL ── */
+#shell {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+}
+
+/* ============================================================
+   TOP BAR
+   ============================================================ */
+#bar {
+  height: 52px;
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+  z-index: 10;
+}
+
+.bar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bar-book {
+  font: 400 0.9375rem/1 'Inter', sans-serif;
+  color: var(--ink-2);
+}
+
+.bar-sep {
+  width: 1px;
+  height: 18px;
+  background: var(--rule);
+  flex-shrink: 0;
+}
+
+.bar-ch {
+  font: 600 0.9375rem/1 'Inter', sans-serif;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 400px;
+}
+
+/* Progress dots */
+.bar-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--rule);
+  transition: background 0.3s ease;
+  flex-shrink: 0;
+}
+
+.dot.active { background: var(--ink); }
+.dot.done   { background: var(--ink-3); }
+
+/* ============================================================
+   STAGE & SCREENS
+   ============================================================ */
+#stage {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.screen {
+  position: absolute;
+  inset: 0;
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.screen.active { transform: translateX(0); }
+.screen.done   { transform: translateX(-100%); }
+
+/* Chapter-to-chapter transition (slower, more deliberate) */
+.screen.chapter-exit {
+  transform: translateX(-100%);
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.screen.chapter-enter {
+  transform: translateX(0);
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bar-shelf-btn {
+  font: 500 0.75rem/1 'Inter', sans-serif;
+  color: var(--ink-3);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: color 0.2s, background 0.2s;
+  white-space: nowrap;
+  margin-right: 12px;
+}
+.bar-shelf-btn:hover {
+  color: var(--ink);
+  background: var(--bg-2);
+}
+
+
+.screen-body {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 52px 10% 24px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--rule) transparent;
+}
+
+.screen-body::-webkit-scrollbar { width: 4px; }
+.screen-body::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 2px; }
+
+.screen-body.center {
+  display: flex;
+  align-items: center;
+  padding: 52px 10% 24px;
+  overflow-y: auto;
+}
+
+/* ── SCREEN FOOTER ── */
+.screen-footer {
+  height: 64px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  border-top: 1px solid var(--rule);
+  background: var(--white);
+}
+
+.screen-ctr {
+  font: 400 0.875rem/1 'Inter', sans-serif;
+  color: var(--ink-3);
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 11px 22px;
+  border-radius: 6px;
+  font: 500 0.875rem/1 'Inter', sans-serif;
+  cursor: pointer;
+  border: none;
+  transition: all 0.15s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--ink);
+  color: white;
+}
+.btn-primary:hover   { background: var(--gold); }
+.btn-primary:disabled {
+  background: var(--rule);
+  color: var(--ink-3);
+  cursor: not-allowed;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink-3);
+}
+.btn-ghost:hover { color: var(--ink); }
+
+/* ============================================================
+   CHAPTER OPENER
+   ============================================================ */
+.opener-wrap {
+  max-width: 100%;
+}
+
+.opener-part {
+  font: 700 1.875rem/1.2 'Inter', sans-serif;
+  color: var(--ink);
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+.opener-num {
+  font: 400 1rem/1 'Inter', sans-serif;
+  color: var(--ink-3);
+  margin-bottom: 24px;
+}
+
+.opener-title {
+  font: 700 3.25rem/1.05 'Inter', sans-serif;
+  color: var(--ink);
+  margin-bottom: 20px;
+  letter-spacing: -1.5px;
+}
+
+.opener-line {
+  width: 48px;
+  height: 3px;
+  background: var(--blue);
+  margin-bottom: 24px;
+  border-radius: 2px;
+}
+
+.opener-intro {
+  font: 400 1.125rem/1.7 'Inter', sans-serif;
+  color: var(--ink-2);
+  max-width: 480px;
+}
+
+/* ============================================================
+   CONTENT
+   ============================================================ */
+.content-wrap {
+  width: 100%;
+}
+
+.prose-wrap {
+  width: 100%;
+}
+
+.opener-wrap {
+  width: 100%;
+}
+
+.cover-wrap {
+  width: 100%;
+}
+
+.copy-wrap {
+  width: 100%;
+}
+
+.toc-wrap {
+  width: 100%;
+}
+
+.exchange-wrap {
+  width: 100%;
+}
+
+.ate-wrap {
+  width: 100%;
+}
+
+.vikram-wrap {
+  width: 100%;
+}
+
+.section-title {
+  font: 600 1.375rem/1.3 'Inter', sans-serif;
+  color: var(--ink);
+  margin-bottom: 20px;
+  letter-spacing: -0.3px;
+}
+
+/* Prose */
+.prose p {
+  font: 400 1.0625rem/1.82 'Inter', sans-serif;
+  color: var(--ink);
+  margin-bottom: 1.1em;
+}
+
+.prose strong { font-weight: 600; }
+.prose em     { font-style: italic; color: var(--ink-2); }
+
+/* Pull quote */
+.pull-quote {
+  border-left: 3px solid var(--ink);
+  padding: 4px 0 4px 20px;
+  margin: 28px 0;
+}
+
+.pull-quote p {
+  font: 600 1.25rem/1.5 'Inter', sans-serif;
+  color: var(--ink);
+  margin: 0;
+  letter-spacing: -0.3px;
+}
+
+/* Stage blocks — numbered sequences */
+.stage-block {
+  margin-bottom: 28px;
+}
+
+.stage-label {
+  font: 700 0.875rem/1 'Inter', sans-serif;
+  color: var(--ink);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stage-num {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: white;
+  font: 700 0.75rem/1 'Inter', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.stage-body {
+  font: 400 1rem/1.75 'Inter', sans-serif;
+  color: var(--ink-2);
+  padding-left: 36px;
+}
+
+/* ============================================================
+   PUSHBACK CARDS
+   ============================================================ */
+.pushback {
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.pb-q {
+  background: var(--bg);
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.pb-q-label {
+  font: 600 0.75rem/1 'Inter', sans-serif;
+  color: var(--ink-3);
+  margin-bottom: 8px;
+}
+
+.pb-q-text {
+  font: 400 0.9375rem/1.6 'Inter', sans-serif;
+  color: var(--ink-2);
+  font-style: italic;
+}
+
+.pb-a {
+  padding: 16px 20px;
+}
+
+.pb-a-label {
+  font: 600 0.75rem/1 'Inter', sans-serif;
+  color: var(--gold);             /* only place --gold is used */
+  margin-bottom: 8px;
+}
+
+.pb-a-text {
+  font: 400 0.9375rem/1.65 'Inter', sans-serif;
+  color: var(--ink);
+}
+
+/* ============================================================
+   EXCHANGE SCREEN
+   ============================================================ */
+.exchange-wrap {
+  max-width: 100%;
+}
+
+.exchange-title {
+  font: 700 1.75rem/1.2 'Inter', sans-serif;
+  color: var(--ink);
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+.exchange-sub {
+  font: 400 1rem/1.6 'Inter', sans-serif;
+  color: var(--ink-2);
+  margin-bottom: 32px;
+}
+
+/* Input rows */
+.input-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.input-num {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: white;
+  font: 600 0.75rem/1 'Inter', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 9px;
+}
+
+.takeaway-input {
+  flex: 1;
+  padding: 11px 14px;
+  border: 1.5px solid var(--rule);
+  border-radius: 8px;
+  font: 400 0.9375rem/1.5 'Inter', sans-serif;
+  color: var(--ink);
+  outline: none;
+  resize: none;
+  transition: border-color 0.15s ease;
+  min-height: 44px;
+  max-height: 120px;      /* cap growth on mobile */
+  overflow-y: auto;
+  font-family: 'Inter', sans-serif;
+}
+
+.takeaway-input:focus       { border-color: var(--ink); }
+.takeaway-input::placeholder { color: var(--ink-3); }
+
+.submit-row {
+  display: flex;
+  justify-content: flex-end;
+  margin: 16px 0 32px;
+}
+
+/* ============================================================
+   LOADING STATE (while Gemini responds)
+   ============================================================ */
+.loading-state {
+  display: none;
+  padding: 24px 0;
+}
+
+.loading-state.show {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.loading-text {
+  font: 400 0.9375rem/1 'Inter', sans-serif;
+  color: var(--ink-3);
+}
+
+.loading-dots span {
+  animation: blink 1.4s infinite both;
+  font-weight: 700;
+  color: var(--ink-3);
+}
+.loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+.loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes blink {
+  0%, 80%, 100% { opacity: 0; }
+  40%           { opacity: 1; }
+}
+
+/* ============================================================
+   AGENT RESPONSE (Vikram's notes)
+   ============================================================ */
+.agent-response {
+  display: none;
+}
+
+.agent-response.show {
+  display: block;
+  animation: fadeUp 0.4s ease forwards;
+}
+
+.agent-header-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.agent-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 700 0.9375rem/1 'Inter', sans-serif;
+  color: white;
+  flex-shrink: 0;
+}
+
+.agent-label {
+  font: 500 0.9375rem/1 'Inter', sans-serif;
+  color: var(--ink-2);
+}
+
+.agent-label span {
+  color: var(--blue);       /* only use of blue on agent label */
+}
+
+.agent-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.agent-item {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 16px 18px;
+  background: var(--bg);
+  border-radius: 8px;
+  border-left: 3px solid var(--ink);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.agent-item.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.agent-item-num {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: white;
+  font: 600 0.6875rem/1 'Inter', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.agent-item-text {
+  font: 400 0.9375rem/1.65 'Inter', sans-serif;
+  color: var(--ink);
+}
+
+.agent-item-text strong { font-weight: 600; }
+
+.continue-row {
+  display: none;
+  margin-top: 24px;
+  justify-content: flex-end;
+}
+
+.continue-row.show { display: flex; }
+
+/* ============================================================
+   CHAPTER END SCREEN
+   ============================================================ */
+.end-wrap {
+  max-width: 520px;
+}
+
+.end-check {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  font-size: 1.375rem;
+}
+
+.end-title {
+  font: 700 1.875rem/1.2 'Inter', sans-serif;
+  color: var(--ink);
+  margin-bottom: 28px;
+  letter-spacing: -0.5px;
+}
+
+.your-takeaways {
+  background: var(--bg);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+}
+
+.takeaway-section-label {
+  font: 600 0.75rem/1 'Inter', sans-serif;
+  color: var(--ink-3);
+  margin-bottom: 14px;
+}
+
+.saved-item {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-bottom: 10px;
+  font: 400 0.9375rem/1.6 'Inter', sans-serif;
+  color: var(--ink);
+}
+
+.saved-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ink);
+  flex-shrink: 0;
+  margin-top: 8px;
+}
+
+/* Author note — Sudharsan's quiet promise */
+.author-note {
+  border-top: 1px solid var(--rule);
+  padding-top: 20px;
+  margin-bottom: 24px;
+}
+
+.author-note-text {
+  font: 400 0.9375rem/1.75 'Inter', sans-serif;
+  color: var(--ink-2);
+  font-style: italic;
+  margin-bottom: 8px;
+}
+
+.author-note-sig {
+  font: 500 0.8125rem/1 'Inter', sans-serif;
+  color: var(--ink-3);
+}
+
+/* ============================================================
+   ONBOARDING SCREENS
+   ============================================================ */
+.cover-wrap { max-width: 100%; }
+
+.cover-series {
+  font: 400 0.8125rem/1 'Inter', sans-serif;
+  color: var(--ink-3);
+  margin-bottom: 48px;
+  letter-spacing: 0.3px;
+}
+
+.cover-title {
+  font: 700 3.5rem/1.05 'Inter', sans-serif;
+  color: var(--ink);
+  margin-bottom: 16px;
+  letter-spacing: -1.5px;
+}
+
+.cover-subtitle {
+  font: 300 1.25rem/1.5 'Inter', sans-serif;
+  color: var(--ink-2);
+  margin-bottom: 48px;
+}
+
+.cover-rule {
+  width: 48px;
+  height: 3px;
+  background: var(--ink);
+  margin-bottom: 32px;
+}
+
+.cover-author {
+  font: 600 1.125rem/1 'Inter', sans-serif;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+.cover-role {
+  font: 400 0.875rem/1 'Inter', sans-serif;
+  color: var(--ink-3);
+}
+
+/* Copyright */
+.copy-wrap { max-width: 100%; }
+
+.copy-title {
+  font: 700 1.625rem/1.2 'Inter', sans-serif;
+  color: var(--ink);
+  margin-bottom: 6px;
+  letter-spacing: -0.5px;
+}
+
+.copy-sub {
+  font: 300 1rem/1.4 'Inter', sans-serif;
+  color: var(--ink-2);
+  margin-bottom: 32px;
+  font-style: italic;
+}
+
+.copy-rule { width: 40px; height: 2px; background: var(--rule); margin-bottom: 32px; }
+
+.copy-p {
+  font: 400 0.875rem/1.75 'Inter', sans-serif;
+  color: var(--ink-2);
+  margin-bottom: 16px;
+}
+
+.copy-disclaimer {
+  font: 400 0.8125rem/1.7 'Inter', sans-serif;
+  color: var(--ink-3);
+  font-style: italic;
+  border-left: 2px solid var(--rule);
+  padding-left: 16px;
+  margin-bottom: 16px;
+}
+
+/* Table of contents */
+.toc-wrap { max-width: 100%; }
+
+.toc-heading {
+  font: 700 2rem/1.2 'Inter', sans-serif;
+  color: var(--ink);
+  margin-bottom: 36px;
+  letter-spacing: -0.5px;
+}
+
+.toc-part {
+  font: 600 0.6875rem/1 'Inter', sans-serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  padding: 20px 0 8px;
+}
+
+.toc-row {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.toc-num {
+  font: 500 0.8125rem/1 'Inter', sans-serif;
+  color: var(--ink-3);
+  min-width: 20px;
+}
+
+.toc-title {
+  font: 400 1rem/1.4 'Inter', sans-serif;
+  color: var(--ink);
+}
+
+/* Preface / prose sections */
+.prose-wrap { max-width: 100%; }
+
+.prose-heading {
+  font: 700 2rem/1.2 'Inter', sans-serif;
+  color: var(--ink);
+  margin-bottom: 32px;
+  letter-spacing: -0.5px;
+}
+
+.prose-rule {
+  width: 40px;
+  height: 3px;
+  background: var(--ink);
+  margin-bottom: 32px;
+}
+
+.prose-sub {
+  font: 400 1rem/1 'Inter', sans-serif;
+  color: var(--ink-3);
+  margin-bottom: 32px;
+}
+
+.prose p.sig {
+  font: 500 1rem/1.5 'Inter', sans-serif;
+  color: var(--ink-2);
+  margin-top: 32px;
+}
+
+/* Who should read */
+.wsr-section { margin-bottom: 28px; }
+
+.wsr-title {
+  font: 600 1.0625rem/1.3 'Inter', sans-serif;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+
+.wsr-body {
+  font: 400 0.9375rem/1.75 'Inter', sans-serif;
+  color: var(--ink-2);
+}
+
+/* About this experience */
+.ate-wrap { max-width: 100%; }
+
+.ate-tag {
+  font: 500 0.75rem/1 'Inter', sans-serif;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 16px;
+}
+
+.ate-title {
+  font: 700 2rem/1.2 'Inter', sans-serif;
+  color: var(--ink);
+  margin-bottom: 16px;
+  letter-spacing: -0.5px;
+}
+
+.ate-body {
+  font: 400 1.0625rem/1.8 'Inter', sans-serif;
+  color: var(--ink-2);
+  margin-bottom: 32px;
+}
+
+.ate-cards { display: flex; flex-direction: column; gap: 12px; }
+
+.ate-card {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 16px 20px;
+  background: var(--bg);
+  border-radius: 8px;
+}
+
+.ate-card-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: white;
+  font: 600 0.8125rem/1 'Inter', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ate-card-text {
+  font: 400 0.9375rem/1.65 'Inter', sans-serif;
+  color: var(--ink);
+}
+
+.ate-card-text strong { font-weight: 600; }
+
+/* Onboarding form */
+.form-wrap { max-width: 480px; }
+
+.form-title {
+  font: 700 2rem/1.2 'Inter', sans-serif;
+  color: var(--ink);
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+.form-sub {
+  font: 400 1rem/1.6 'Inter', sans-serif;
+  color: var(--ink-2);
+  margin-bottom: 36px;
+}
+
+.field { margin-bottom: 16px; }
+
+.field label {
+  font: 500 0.875rem/1 'Inter', sans-serif;
+  color: var(--ink-2);
+  margin-bottom: 7px;
+  display: block;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid var(--rule);
+  border-radius: 8px;
+  font: 400 0.9375rem/1 'Inter', sans-serif;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.15s ease;
+  background: white;
+  font-family: 'Inter', sans-serif;
+  -webkit-appearance: none;
+}
+
+.field input:focus,
+.field select:focus  { border-color: var(--ink); }
+.field input::placeholder { color: var(--ink-3); }
+
+/* Vikram intro card */
+.vikram-wrap { max-width: 600px; }
+
+.vikram-disclaimer {
+  font: 400 0.75rem/1.6 'Inter', sans-serif;
+  color: var(--ink-3);
+  font-style: italic;
+  border-left: 2px solid var(--rule);
+  padding: 10px 14px;
+  margin-bottom: 28px;
+  background: var(--bg);
+  border-radius: 0 6px 6px 0;
+}
+
+.vikram-card {
+  padding: 28px;
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.vikram-card.show { opacity: 1; }
+
+.vikram-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.vikram-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 700 1.25rem/1 'Inter', sans-serif;
+  color: white;
+  flex-shrink: 0;
+}
+
+.vikram-name {
+  font: 600 1rem/1 'Inter', sans-serif;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.vikram-role {
+  font: 400 0.8125rem/1 'Inter', sans-serif;
+  color: var(--ink-3);
+}
+
+.vikram-message {
+  font: 400 1rem/1.8 'Inter', sans-serif;
+  color: var(--ink-2);
+  min-height: 60px;
+}
+
+/* ============================================================
+   BACK MATTER
+   ============================================================ */
+.bm-label {
+  font: 600 0.75rem/1 'Inter', sans-serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 8px;
+}
+
+.vikram-closing-msg {
+  font: 400 1.0625rem/1.85 'Inter', sans-serif;
+  color: var(--ink-2);
+  min-height: 80px;
+}
+
+/* App loader dots */
+.loader-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--ink);
+  animation: loaderPulse 1.2s ease-in-out infinite;
+}
+.loader-dot:nth-child(2) { animation-delay: 0.2s; }
+.loader-dot:nth-child(3) { animation-delay: 0.4s; }
+@keyframes loaderPulse {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.3; }
+  40%           { transform: scale(1);   opacity: 1; }
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ============================================================
+   LOGIN SCREEN
+   ============================================================ */
+.login-screen-wrap {
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-screen-series {
+  font: 500 0.75rem/1 'Inter', sans-serif;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 24px;
+}
+
+.login-screen-title {
+  font: 700 2rem/1.2 'Inter', sans-serif;
+  color: var(--ink);
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+.login-screen-sub {
+  font: 400 0.9375rem/1.6 'Inter', sans-serif;
+  color: var(--ink-2);
+  margin-bottom: 32px;
+}
+
+.login-screen-error {
+  display: none;
+  font: 400 0.875rem/1.5 'Inter', sans-serif;
+  color: #c0392b;
+  background: #fdf0ef;
+  border: 1px solid #f5c6c2;
+  border-radius: 6px;
+  padding: 10px 14px;
+  margin-bottom: 20px;
+}
+
+.login-screen-error.show { display: block; }
+
+.login-screen-btn {
+  width: 100%;
+  justify-content: center;
+  padding: 13px;
+  margin-top: 8px;
+}
+
+/* ============================================================
+   SHELF SCREEN
+   ============================================================ */
+.shelf-wrap {
+  max-width: 860px;
+}
+
+.shelf-greeting {
+  font: 700 2rem/1.2 'Inter', sans-serif;
+  color: var(--ink);
+  margin-bottom: 6px;
+  letter-spacing: -0.5px;
+}
+
+.shelf-label {
+  font: 400 0.875rem/1 'Inter', sans-serif;
+  color: var(--ink-3);
+  margin-bottom: 36px;
+}
+
+.shelf-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.shelf-card {
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.shelf-card--active {
+  border-color: var(--ink);
+}
+
+.shelf-card--soon {
+  opacity: 0.5;
+}
+
+.shelf-card-num {
+  font: 700 2.5rem/1 'Inter', sans-serif;
+  color: var(--rule);
+  margin-bottom: 16px;
+  letter-spacing: -1px;
+}
+
+.shelf-card--active .shelf-card-num {
+  color: var(--ink);
+}
+
+.shelf-card-tag {
+  font: 600 0.75rem/1 'Inter', sans-serif;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 10px;
+}
+
+.shelf-card--active .shelf-card-tag {
+  color: var(--blue);
+}
+
+.shelf-card-title {
+  font: 600 1rem/1.3 'Inter', sans-serif;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+
+.shelf-card-body {
+  font: 400 0.875rem/1.65 'Inter', sans-serif;
+  color: var(--ink-2);
+  flex: 1;
+  margin-bottom: 24px;
+}
+
+.shelf-card-footer {
+  margin-top: auto;
+}
+
+.shelf-card-soon {
+  font: 500 0.8125rem/1 'Inter', sans-serif;
+  color: var(--ink-3);
+  letter-spacing: 0.3px;
+}
+
+@media (max-width: 600px) {
+  .shelf-grid { grid-template-columns: 1fr; }
+  .shelf-greeting { font-size: 1.5rem; }
+}
+
+/* ============================================================
+   RESPONSIVE — MOBILE
+   ============================================================ */
+@media (max-width: 600px) {
+  .screen-body         { padding: 32px 24px 24px; }
+  .screen-footer       { padding: 0 20px; }
+  #bar                 { padding: 0 20px; }
+
+  .opener-title        { font-size: 2.25rem; }
+  .opener-part         { font-size: 1.375rem; }
+  .cover-title         { font-size: 2.25rem; }
+  .prose-heading       { font-size: 1.5rem; }
+  .toc-heading         { font-size: 1.5rem; }
+  .exchange-title      { font-size: 1.375rem; }
+  .end-title           { font-size: 1.5rem; }
+
+  .bar-ch              { max-width: 180px; font-size: 0.8125rem; }
+  .form-wrap           { max-width: 100%; }
+}
