@@ -359,9 +359,9 @@ function renderScreen(screen, idx, total) {
       return `
         <div class="screen-body center">
           <div class="opener-wrap">
-            <div class="opener-part">${screen.part}</div>
+            <div class="opener-part">${screen.partName || screen.part}</div>
             <div class="opener-num">Chapter ${currentChapter?.chapterNum || ''}</div>
-            <div class="opener-title">${screen.title}</div>
+            <div class="opener-title">${screen.chapterTitle || screen.title}</div>
             <div class="opener-line"></div>
             <div class="opener-intro">${screen.intro}</div>
           </div>
@@ -378,8 +378,16 @@ function renderScreen(screen, idx, total) {
       return `
         <div class="screen-body">
           <div class="content-wrap">
-            <div class="section-title">${screen.heading}</div>
+            <div class="section-title">${screen.title || screen.heading}</div>
             <div class="prose">${screen.body}</div>
+            ${(screen.pushbacks || []).map(pb => `
+              <div class="pushback">
+                <div class="pb-q">
+                  <div class="pb-q-label">Founder Says</div>
+                  <div class="pb-q-text">"${pb.q}"</div>
+                </div>
+                <div class="pb-a">${pb.a}</div>
+              </div>`).join('')}
             ${screen.extra || ''}
           </div>
         </div>
@@ -399,17 +407,17 @@ function renderScreen(screen, idx, total) {
             <div id="reader-inputs">
               <div class="input-row">
                 <div class="input-num">1</div>
-                <textarea class="takeaway-input" id="t1" placeholder="First takeaway…" rows="2"
+                <textarea class="takeaway-input" id="t1" placeholder="${screen.prompts?.[0] || 'First takeaway…'}" rows="2"
                   oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,120)+'px';checkInputs()"></textarea>
               </div>
               <div class="input-row">
                 <div class="input-num">2</div>
-                <textarea class="takeaway-input" id="t2" placeholder="Second takeaway…" rows="2"
+                <textarea class="takeaway-input" id="t2" placeholder="${screen.prompts?.[1] || 'Second takeaway…'}" rows="2"
                   oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,120)+'px';checkInputs()"></textarea>
               </div>
               <div class="input-row">
                 <div class="input-num">3</div>
-                <textarea class="takeaway-input" id="t3" placeholder="Third takeaway…" rows="2"
+                <textarea class="takeaway-input" id="t3" placeholder="${screen.prompts?.[2] || 'Third takeaway…'}" rows="2"
                   oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,120)+'px';checkInputs()"></textarea>
               </div>
               <div class="submit-row">
@@ -460,7 +468,7 @@ function renderScreen(screen, idx, total) {
         : nextNum <= TOTAL_CHAPTERS
         ? `<button class="btn btn-primary" style="width:100%;justify-content:center;padding:13px"
              onclick="goToChapter(${nextNum})">
-             Chapter ${nextNum}: ${screen.nextTitle} →
+             Chapter ${nextNum}: ${screen.nextChapterTitle || screen.nextTitle} →
            </button>`
         : `<button class="btn btn-primary" style="width:100%;justify-content:center;padding:13px"
              onclick="goToDiagnosis()">
@@ -479,6 +487,7 @@ function renderScreen(screen, idx, total) {
               <div class="author-note-text">At the end of this book, your notes from every chapter will be reviewed. You will receive a personalised strategic diagnosis for your business.</div>
               <div class="author-note-sig">— Sudharsan K R</div>
             </div>
+            ${screen.closingLine ? `<div class="chapter-closing-line">${screen.closingLine}</div>` : ''}
             ${nextBtn}
           </div>
         </div>
@@ -494,7 +503,7 @@ function renderScreen(screen, idx, total) {
         <div class="screen-body">
           <div class="content-wrap">
             <div class="bm-label">${screen.label || ''}</div>
-            <div class="section-title">${screen.heading}</div>
+            <div class="section-title">${screen.title || screen.heading}</div>
             <div class="prose">${screen.body}</div>
           </div>
         </div>
@@ -701,7 +710,7 @@ function renderScreen(screen, idx, total) {
       return `
         <div class="screen-body">
           <div class="content-wrap">
-            <div class="section-title">${screen.heading}</div>
+            <div class="section-title">${screen.title || screen.heading}</div>
             <div class="prose">${screen.body}</div>
           </div>
         </div>
@@ -1122,7 +1131,11 @@ async function submitBookTakeaways(nextScreenIdx) {
   document.getElementById('loading-state').classList.add('show');
 
   const user = getUser();
-  let perspectives = currentChapter.vikramPerspectives;
+  let perspectives = currentChapter.vikramPerspectives || [
+    '<strong>The architecture is decodable.</strong> Fourteen years of instinct, and this book gave me the vocabulary to name what I built.',
+    '<strong>Strategy is not a menu.</strong> Every archetype I read was a mirror — not a template to copy, but a logic to understand.',
+    '<strong>The 90-Day Sprint begins now.</strong> Reading does not change a balance sheet. The date is in my calendar.'
+  ];
 
   try {
     const controller = new AbortController();
@@ -1131,7 +1144,7 @@ async function submitBookTakeaways(nextScreenIdx) {
     const res = await fetch(RAILWAY_URL + '/api/agent', {
       method: 'POST',
       signal: controller.signal,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'x-reader-email': localStorage.getItem('readerEmail') || '', 'x-reader-token': localStorage.getItem('readerToken') || '' },
       body: JSON.stringify({
         userName:     user.name,
         userRev:      user.rev,
@@ -1211,7 +1224,11 @@ async function submitTakeaways(nextScreenIdx) {
   document.getElementById('loading-state').classList.add('show');
 
   const user = getUser();
-  let perspectives = currentChapter.vikramPerspectives;
+  let perspectives = currentChapter.vikramPerspectives || [
+    '<strong>The architecture is decodable.</strong> Fourteen years of instinct, and this book gave me the vocabulary to name what I built.',
+    '<strong>Strategy is not a menu.</strong> Every archetype I read was a mirror — not a template to copy, but a logic to understand.',
+    '<strong>The 90-Day Sprint begins now.</strong> Reading does not change a balance sheet. The date is in my calendar.'
+  ];
 
   try {
     const controller = new AbortController();
@@ -1220,7 +1237,7 @@ async function submitTakeaways(nextScreenIdx) {
     const res = await fetch(RAILWAY_URL + '/api/agent', {
       method: 'POST',
       signal: controller.signal,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'x-reader-email': localStorage.getItem('readerEmail') || '', 'x-reader-token': localStorage.getItem('readerToken') || '' },
       body: JSON.stringify({
         userName:     user.name,
         userRev:      user.rev,
