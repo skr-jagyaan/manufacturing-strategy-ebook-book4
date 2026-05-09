@@ -281,6 +281,7 @@ async function loadOnboarding(startScreen = 0) {
 
 // ── BACKMATTER LOADER ──
 async function loadBackmatter(startScreen = 0) {
+  history.pushState({}, '', '/backmatter');
   showLoader();
   try {
     const module = await import('/chapters/backmatter.js?v=4');
