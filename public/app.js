@@ -629,6 +629,7 @@ function renderScreen(screen, idx, total) {
     case 'intro':
     case 'about':
     case 'form':
+    case 'companion':
     case 'vikram':
       return renderOnboardingScreen(screen, idx, total, prevBtn);
 
@@ -760,7 +761,7 @@ function renderOnboardingScreen(screen, idx, total, prevBtn) {
         if (item.isSection) {
           return `<div class="toc-section">${item.title}</div>`;
         }
-        return `<div class="toc-row"><span class="toc-label">${item.label}</span><span class="toc-title">${item.title}</span></div>`;
+        return `<div class="toc-row"><span class="toc-label">${item.label || ""}</span><span class="toc-title">${item.title || ""}</span></div>`;
       }).join('');
       return `
         <div class="screen-body">
@@ -849,19 +850,22 @@ function renderOnboardingScreen(screen, idx, total, prevBtn) {
           <button class="btn btn-primary" onclick="submitForm(${idx})">Meet Your Reading Companion →</button>
         </div>`;
 
+    
+
+    case 'companion':
     case 'vikram':
       return `
         <div class="screen-body center">
           <div class="vikram-wrap">
             <div class="vikram-disclaimer">
-              Ramesh Iyer is a fictional character powered by an AI agent. Any resemblance to actual persons, businesses, or events is purely coincidental. Ramesh's responses are AI-generated and do not constitute professional business or strategy advice.
+              ${screen.companionName} is a fictional character powered by an AI agent. Any resemblance to actual persons, businesses, or events is purely coincidental. Responses are AI-generated and do not constitute professional strategy advice.
             </div>
             <div class="vikram-card" id="vikram-card">
               <div class="vikram-header">
-                <div class="vikram-avatar">R</div>
+                <div class="vikram-avatar">${screen.companionInitial}</div>
                 <div>
-                  <div class="vikram-name">Ramesh Iyer</div>
-                  <div class="vikram-role">Specialty Chemicals · Ahmedabad</div>
+                  <div class="vikram-name">${screen.companionName}</div>
+                  <div class="vikram-role">${screen.companionTitle}</div>
                 </div>
               </div>
               <div class="vikram-message" id="vikram-msg"></div>
