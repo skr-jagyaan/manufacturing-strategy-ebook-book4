@@ -295,6 +295,15 @@ async function loadBackmatter(startScreen = 0) {
     buildScreens(currentChapter.screens);
     totalScreens = currentChapter.screens.length;
     currentScreen = 0;
+    if (startScreen > 0 && startScreen < totalScreens) {
+      for (let i = 0; i < startScreen; i++) {
+        const el = document.getElementById('sc-' + i);
+        if (el) { el.classList.remove('active'); el.classList.add('done'); }
+      }
+      const target = document.getElementById('sc-' + startScreen);
+      if (target) { target.classList.add('active'); target.classList.remove('done'); }
+      currentScreen = startScreen;
+    }
 
     buildDots();
     hideLoader();
