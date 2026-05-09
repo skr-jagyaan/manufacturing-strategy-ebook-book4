@@ -280,7 +280,7 @@ async function loadOnboarding(startScreen = 0) {
 }
 
 // ── BACKMATTER LOADER ──
-async function loadBackmatter() {
+async function loadBackmatter(startScreen = 0) {
   showLoader();
   try {
     const module = await import('/chapters/backmatter.js?v=4');
@@ -1375,6 +1375,7 @@ document.addEventListener('touchend', e => {
 window.go                  = go;
 window.goToChapter         = goToChapter;
 window.goToBackmatter      = goToBackmatter;
+window.loadBackmatter       = loadBackmatter;
 window.goToDiagnosis       = goToDiagnosis;
 window.submitForm          = submitForm;
 window.submitTakeaways     = submitTakeaways;
