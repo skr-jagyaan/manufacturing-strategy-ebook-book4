@@ -1,117 +1,148 @@
 export default {
-  chapterNum:   null,
-  chapterTitle: 'Onboarding',
-  partName:     '',
-  barTitle:     'Stop Planning, Start Winning',
-
   screens: [
-    // 0 — Cover
+
     {
-      type:     'cover',
-      series:   'The Manufacturing Strategy Series · Book Two',
-      title:    'Stop Planning,\nStart Winning',
-      subtitle: 'Making Strategic Choices Competitors Can\'t Copy',
-      author:   'Sudharsan K R'
+      type: 'cover',
+      seriesLabel: 'The Manufacturing Strategy Series',
+      bookNumber: 'Book Four',
+      title: 'Decoding the Rs. 100 Cr Breakthrough',
+      subtitle: 'Strategic Architecture for Indian Manufacturing — From Growth Stage to Market Leadership',
+      author: 'Sudharsan K R',
     },
 
-    // 1 — Copyright
     {
       type: 'copyright',
-      body: `<p>Copyright © 2026 by Sudharsan K R</p>
-<p>All rights reserved. No part of this publication may be reproduced, distributed, or transmitted in any form or by any means — including photocopying, recording, or other electronic or mechanical methods — without the prior written permission of the author, except in the case of brief quotations embodied in critical reviews and certain other non-commercial uses permitted by copyright law.</p>
-<p>The case studies and scenarios featured in these pages are composite accounts based on real-world consulting experiences. Specific names, locations, and identifying business metrics have been altered to protect client confidentiality. This publication is sold with the understanding that the author is not engaged in rendering legal, accounting, or other professional compliance services.</p>
-<p>Published in India.</p>`
+      seriesLine: 'The Manufacturing Strategy Series',
+      bookList: [
+        'Book One — Why Great Manufacturers Stay Invisible',
+        'Book Two — Stop Planning, Start Winning',
+        "Book Three — Don't Bet the Business",
+        'Book Four — Decoding the Rs. 100 Cr Breakthrough',
+      ],
+      copyrightLine: 'Copyright © 2026 by Sudharsan K R',
+      rights: 'All rights reserved. No part of this publication may be reproduced, distributed, or transmitted in any form or by any means — including photocopying, recording, or other electronic or mechanical methods — without the prior written permission of the author, except in the case of brief quotations embodied in critical reviews and certain other non-commercial uses permitted by copyright law.',
+      disclaimer: 'The case studies and financial analyses in this book draw on publicly available information about the companies discussed. They are intended as strategic frameworks for learning, not as investment advice or a commentary on the current financial condition of any company. Additional composite scenarios based on real-world consulting experiences have been included, with specific names and metrics altered to protect client confidentiality.',
+      publishedLine: 'Published in India.',
     },
 
-    // 2 — Table of Contents
     {
-      type:  'toc',
+      type: 'toc',
       items: [
-        { label: 'Introduction', title: 'Why Most Strategy Meetings Go Nowhere' },
-        { label: 'Part One',     title: 'The Planning Trap',                    isSection: true },
-        { label: 'Chapter 1',   title: 'The Strategy Illusion' },
-        { label: 'Chapter 2',   title: 'The Laudable List Problem' },
-        { label: 'Part Two',    title: 'The Two Strategic Choices',             isSection: true },
-        { label: 'Chapter 3',   title: 'Where Could We Play?' },
-        { label: 'Chapter 4',   title: 'How Could We Win There?' },
-        { label: 'Chapter 5',   title: 'The Fit Between Opportunity and Advantage' },
-        { label: 'Part Three',  title: 'Designing Advantage',                  isSection: true },
-        { label: 'Chapter 6',   title: 'Where Advantage Actually Comes From' },
-        { label: 'Chapter 7',   title: 'The Power of Trade-Offs' },
-        { label: 'Part Four',   title: 'Strategy as an Integrated System',     isSection: true },
-        { label: 'Chapter 8',   title: 'Strategy Is a System of Choices' },
-        { label: 'Chapter 9',   title: 'Why Most Strategies Collapse' },
-        { label: 'Conclusion',  title: 'Turning Strategic Ideas Into Testable Logic' },
-      ]
+        { label: 'Preface', indent: 0 },
+        { label: 'Who Should Read This Book', indent: 0 },
+        { label: 'Part One: How to Decode a Rs. 100 Cr Strategy', indent: 0, isPartHead: true },
+        { label: 'Chapter 1: The Strategy Decoder', indent: 1 },
+        { label: 'Part Two: Strategy Archetypes in Indian Manufacturing', indent: 0, isPartHead: true },
+        { label: 'Chapter 2: The OEM Specialist — Sundram Fasteners', indent: 1 },
+        { label: 'Chapter 3: The Contract Manufacturing Engine — Dixon Technologies', indent: 1 },
+        { label: 'Chapter 4: The Import Substitution Strategy — AIA Engineering', indent: 1 },
+        { label: 'Chapter 5: The Commodity to Brand Strategy — Astral Limited', indent: 1 },
+        { label: 'Chapter 6: The White Label Ecosystem — Amber Enterprises', indent: 1 },
+        { label: 'Chapter 7: The Distribution Power Strategy — KEI Industries', indent: 1 },
+        { label: 'Chapter 8: The Cost Leadership Strategy — Relaxo Footwears', indent: 1 },
+        { label: 'Chapter 9: The Global Niche Strategy — Vinati Organics', indent: 1 },
+        { label: 'Chapter 10: The Distribution Platform Expansion — Polycab India', indent: 1 },
+        { label: 'Chapter 11: The Value Chain Climb — PG Electroplast', indent: 1 },
+        { label: 'Chapter 12: The Strategic Reinvention — Havells India', indent: 1 },
+        { label: 'Part Three: Designing Your Rs. 100 Cr Strategic Possibilities', indent: 0, isPartHead: true },
+        { label: 'Chapter 13: Generating Strategic Possibilities', indent: 1 },
+        { label: 'Chapter 14: The Logic Test — What Would Have to Be True?', indent: 1 },
+        { label: 'Chapter 15: Thin-Slicing Strategic Experiments', indent: 1 },
+        { label: 'Chapter 16: Your 90-Day Strategy Roadmap', indent: 1 },
+      ],
     },
 
-    // 3 — Preface
     {
-      type:    'preface',
+      type: 'preface',
       heading: 'Preface',
-      body:    `<p>In my career, I have not just observed the engineering and manufacturing world from the sidelines — I have been in the middle of negotiating it.</p>
-<p>During years of joint venture discussions and facility visits with institutions like ISRO and IISc, I sat across the table from some of the most rigorous analytical minds in the country. In those settings, I saw what genuine intellectual discipline looks like when applied to a hard problem — the insistence on testing assumptions before acting on them, the refusal to confuse activity with progress. I learned the rigour required to translate complex, cutting-edge thinking into real-world utility.</p>
-<p>I took that same lens into the boardrooms of large industrial organisations — L&T, GMR, and others. I saw how businesses at scale structure consequential decisions. How they separate strategic choice from operational execution. How they build organisations that can make decisions independently of any single individual.</p>
-<p>And then I stepped into the boardrooms and factory floors of manufacturing businesses in the Rs. 10 to Rs. 50 Crore band across Pune, Coimbatore, Ahmedabad, Ludhiana, Rajkot, and the industrial estates surrounding them. What I consistently observed was this: these businesses were not failing because of poor execution. They were stalling because of unexamined strategic choices — and then treating the consequences as operational problems.</p>
-<p>The clearest symptom I encountered was the annual strategy offsite — a day of genuine effort that produced a list of operational improvements and nothing that would change how the business competed in its market. Founders left that room feeling productive, holding a to-do list they called a strategy. Six months later, nothing had changed. The machine had arrived. The software was installed. The salespeople were hired. And the procurement manager still said: your quality looks good, but your price is 4% too high.</p>
-<p>That gap between effort and outcome — between planning and strategy — is the subject of this book. This is not a book about working harder. It is a book about making different choices — with the clarity and discipline that the next phase of your business actually requires.</p>`
+      body: `<p>In my career, I have not just observed the engineering and manufacturing world from the sidelines — I have been in the middle of negotiating it.</p>
+
+<p>During years of joint venture discussions and facility visits with institutions like ISRO and IISc, I sat across the table from some of the most rigorous analytical minds in the country. In those settings, I saw what genuine intellectual discipline looks like when applied to a hard problem — the insistence on testing assumptions before acting on them, the discipline of distinguishing between what is known and what is merely hoped. I learned the rigour required to translate complex, cutting-edge thinking into real-world utility.</p>
+
+<p>I took that same lens into the boardrooms of large industrial organisations — L&T, GMR, and others. I saw how businesses at scale make strategic choices. How they define where they will compete and where they will not. How they build capabilities that competitors cannot replicate simply by writing a cheque. How they enforce trade-offs that most founders are too afraid to make.</p>
+
+<p>And then I stepped into the boardrooms and factory floors of manufacturing businesses in the Rs. 10 to Rs. 50 Crore band across Pune, Coimbatore, Ahmedabad, Ludhiana, Rajkot, and the industrial estates surrounding them. The most instructive moments came when I began decoding the companies that had successfully crossed Rs. 100 Crore — and realised that their strategic architecture was entirely visible, if you knew what to look for.</p>
+
+<p>That is the central insight of this book. The companies in these pages — Sundram Fasteners, Dixon Technologies, AIA Engineering, Havells, PG Electroplast, Vinati Organics, and the others — did not break through to Rs. 100 Crore by working harder than everyone else or by being luckier. They broke through because they made a specific, integrated set of strategic choices about where to compete, how to win, what capabilities to build, and — most critically — what revenue and customers to deliberately walk away from. The architecture of their success is entirely decodable. And once you can decode it, you can begin designing your own.</p>
+
+<p>The first three books in this series gave you the framework and the method. Book One named the structural reasons good manufacturing businesses remain invisible to the market. Book Two gave you the tools to design real strategic choices rather than operational to-do lists. Book Three showed you how to test your most dangerous strategic assumptions before committing capital. This book brings all three together and shows you the integrated architecture inside the companies that have already made the journey — so you can build yours with clarity rather than hope.</p>
+
+<p>What you will find in these pages is not a blueprint to copy. Cargo cult strategy — copying the machines, the headcount, and the SKUs of successful companies without understanding the choices that produced them — is precisely what this book argues against. What you will find instead is a way of seeing. A way of looking at any successful manufacturing business and understanding, at the level of architecture, how it actually works.</p>
+
+<p>That way of seeing is what changes everything.</p>`,
+      authorName: 'Sudharsan K R',
+      authorTitle: 'Business Model & Strategy Advisor',
     },
 
-    // 4 — Who Should Read This Book
     {
-      type:    'who',
+      type: 'who',
       heading: 'Who Should Read This Book',
-      body:    `<p>This book is written for a specific kind of person at a specific kind of moment. Not everyone in manufacturing needs it. But for those who do, it will be the most important business book they read this year.</p>
-<p><strong>The Founder Who Has Outgrown Their Own Business.</strong> You built this business from nothing. You funded it, fought for it, and made it work through sheer force of will. You know every machine on the floor, every customer on the books, and every margin on every job. And yet, somewhere around Rs. 20 Crore or Rs. 30 Crore or Rs. 40 Crore, the business stopped responding to effort the way it used to. You are working as hard as you ever have, and the revenue is not moving. You have tried new machines. You have tried new salespeople. You have tried new systems. Something structural is wrong, and you have not yet been able to name it. This book will name it for you.</p>
-<p><strong>The Managing Director Preparing for the Next Phase.</strong> Your business is operationally sound. You have capable people, good quality systems, and a solid customer base. You are now facing the question that every well-run manufacturing business eventually confronts: what comes next? How do you move from being a reliable vendor to a recognised specialist? How do you grow profitably rather than just growing? How do you build a business that has pricing power, not just production capacity? This book answers those questions with specificity — not theory, but a practical framework for making the choices that create structural competitive advantage.</p>
-<p><strong>The CA, Lawyer, or Financial Advisor to Manufacturing Businesses.</strong> You work closely with manufacturing businesses in the Rs. 10 to Rs. 50 Crore band. You see their financials, their balance sheets, their capital allocation decisions. You have watched businesses invest in machines, hire expensive executives, and attend trade shows — and return to the same revenue plateau the following year. The answer is almost always a strategy problem, not an execution problem. This book will give you the diagnostic vocabulary to recognise it.</p>
-<p><strong>The Senior Leader Inside a Manufacturing Business.</strong> You are a Head of Sales, a CFO, a Head of Production, or a Quality Head. You sit in the strategy offsites. You contribute to the lists on the whiteboard. And you leave those meetings with a vague sense that what has been produced is not a strategy, but you are not sure how to say so. You want a common language for strategic thinking that you can bring into the room. This book is that language.</p>
-<p><strong>Who This Book Is Not For.</strong> This book is not for businesses below Rs. 10 Crore in revenue who are still in the survival stage. It is also not for those looking for a motivational framework or a set of inspirational principles. The thinking here is analytical and sometimes uncomfortable. Strategy, properly understood, requires making painful choices — about what you will stop doing, which customers you will stop serving, and which revenue you will deliberately walk away from. If you are not ready for that discomfort, this is the wrong book. If you are ready for it, turn the page.</p>`
+      body: `<p>This is the fourth and final book in the Manufacturing Strategy Series. It is the one that shows you what the completed architecture looks like — the integrated strategic choices, capabilities, and trade-offs that define companies operating at Rs. 100 Crore scale and beyond. If you have read the earlier books in the series, this is where the frameworks you have built meet the real companies that have lived them. If this is the first book you have picked up in the series, it stands alone as a complete strategic education in how Indian manufacturing businesses actually build structural advantage.</p>
+
+<p><strong>The Founder or Managing Director at Rs. 15 to Rs. 50 Crore</strong></p>
+<p>You have built something real. The machines are running, the customers are paying, and the team is capable. But the business has not broken through to the next level — and you can feel, without quite being able to name it, that the reason is structural rather than operational. This book will give you the vocabulary and the frameworks to name that structure. More importantly, it will show you eleven specific strategic architectures that manufacturing businesses have used to make that breakthrough, decoded down to the exact choices, capabilities, and trade-offs that made them work.</p>
+
+<p><strong>The Executive Director, Independent Director, or Board Member</strong></p>
+<p>You sit in strategic reviews where leadership teams present growth plans built on acquiring new machines, hiring more salespeople, and attending larger trade shows. You have the instinct that something is missing from these plans — that the logic connecting the investments to the competitive outcomes is absent. This book gives you the analytical framework to name what is missing. The five-lens decoder — Where to Play, How to Win, Must-Have Capabilities, Trade-Offs, and Management Systems — is the framework for the questions a board should ask before approving any strategic capital expenditure or market entry plan.</p>
+
+<p><strong>The CA, Lawyer, or Financial Advisor to Manufacturing Businesses</strong></p>
+<p>Your manufacturing clients come to you with capital allocation decisions. They want to buy new machines, enter new markets, or restructure their business. Your professional value is in the quality of the questions you ask before they commit. This book will significantly expand the strategic diagnostic vocabulary available to you in those conversations. Understanding why a Rs. 20 Crore company copying the surface actions of a Rs. 200 Crore company is likely to fail — and being able to articulate that to a client before the loan is signed — is precisely the advisory value this book will give you.</p>
+
+<p><strong>The Senior Leader Inside a Manufacturing Business</strong></p>
+<p>You are a Head of Sales, a CFO, a Head of Production, or a Strategic Planning Manager. You are asked to contribute to strategy. But strategy, as it is practised in most manufacturing boardrooms, is a list of operational improvements — not a genuine set of competitive choices. This book will show you what genuine strategic architecture looks like, built from eleven companies that have executed it. It will give you the vocabulary to participate in strategic conversations at a level that changes the outcome of those conversations.</p>
+
+<p><strong>The Informed Reader Who Follows Indian Manufacturing</strong></p>
+<p>The companies in this book — Sundram Fasteners, Dixon Technologies, AIA Engineering, Havells, PG Electroplast, Vinati Organics, Astral, KEI, Relaxo, Amber, and Polycab — are among the most instructive case studies in the history of Indian industrial development. Understanding the strategic logic beneath their public success is valuable not only for practitioners but for any serious reader interested in how Indian manufacturing companies actually build structural competitive advantage.</p>
+
+<p><strong>Who This Book Is Not For</strong></p>
+<p>This book is not for businesses in the survival stage, where the urgent task is cash flow rather than strategic architecture. The frameworks here require a business that has already found its operational footing and is now asking the harder question of how to compete rather than merely how to survive.</p>
+<p>This book is also not for those who want a shortcut — a winning formula to copy. Every archetype in this book is analysed precisely to show why copying the output without the underlying strategic choices produces failure, not growth. If you are looking for a template to replicate, this book will disappoint you. If you are looking for a framework to think, it will be the most useful business book you read this year.</p>`,
     },
 
-    // 5 — Introduction screen 1
     {
-      type:    'intro',
-      heading: 'Why Most Strategy Meetings Go Nowhere',
-      body:    `<p>Picture a scene that takes place in thousands of manufacturing businesses every single year. It is a Saturday morning in late March. The leadership team of a mid-sized manufacturing company — the Managing Director, the Head of Production, the VP of Sales, the Quality Manager, and the CFO — have gathered in a hotel conference room for their annual Strategy Offsite. The business has been stuck at the same revenue plateau for three years. Margins are shrinking, procurement buyers are demanding deeper discounts, and aggressive new competitors are entering the market. Everyone in the room knows that things need to change.</p>
-<p>The Managing Director stands at the front of the room, uncaps a marker, and writes the word STRATEGY in big, bold letters on the whiteboard. For the next four hours, the room buzzes with intense, passionate energy. The Production Head argues that they need to invest in new high-speed automated machinery to reduce cycle times. The Quality Manager insists they need to implement digital inspection software. The VP of Sales demands a larger travel budget, a new CRM system, and approval to hire three new field executives to push into export markets.</p>
-<p>By lunchtime, the whiteboard is entirely filled with bullet points. The Managing Director takes a photo of the whiteboard. The team goes downstairs to the hotel buffet, patting each other on the back. They feel aligned. They feel productive. They leave the offsite feeling like they have a powerful new strategy to dominate the market.</p>
-<p>Six months later, they are sitting in the exact same boardroom, looking at the exact same flatlined revenue numbers. The new machines are installed and running beautifully. The quality software is active. The new salespeople are making fifty calls a day. Yet the business is still fighting for scraps. When the sales team pitches a new corporate buyer, the buyer still flips to the back of the quotation and says: "Your quality looks good, but your price is 4% too high. Match the lowest bidder, or we walk."</p>
-<p>Despite executing almost everything on the whiteboard flawlessly, the company's competitive position in the market has not changed one bit. Why? Because that leadership team did not actually create a strategy in that hotel room. They created a to-do list.</p>`
+      type: 'form',
+      title: 'Before we begin',
+      subtitle: 'Your answers personalise the reading experience and shape the strategic diagnosis at the end.',
+      fields: [
+        {
+          id: 'readerName',
+          label: 'Your name',
+          placeholder: 'How should we address you?',
+          type: 'text',
+        },
+        {
+          id: 'readerRev',
+          label: 'Your current revenue band',
+          type: 'select',
+          options: [
+            { value: 'under10', label: 'Under ₹10 Cr' },
+            { value: '10to25', label: '₹10 Cr – ₹25 Cr' },
+            { value: '25to50', label: '₹25 Cr – ₹50 Cr' },
+            { value: '50plus', label: 'Above ₹50 Cr' },
+          ],
+        },
+        {
+          id: 'readerSector',
+          label: 'Your manufacturing sector',
+          placeholder: 'e.g. Sheet metal, Castings, PCB assembly…',
+          type: 'text',
+        },
+      ],
     },
 
-    // 6 — Introduction screen 2 — Deconstructing the Whiteboard
     {
-      type:    'intro',
-      heading: 'Deconstructing the Whiteboard',
-      body:    `<p>To understand why the meeting failed, we have to look closely at the items on that whiteboard. Every single bullet point represents a massive misunderstanding of how business actually works. Improve quality — quality is not a strategy; it is an operating imperative, the minimum standard required just to be invited to quote. Buy better machines — a machine is a piece of capital equipment, and if your competitive advantage relies entirely on a machine that any of your competitors can buy simply by walking into a bank and signing a loan document, you do not have a competitive advantage. Increase exports — exports is not a strategy, it is a massive, fragmented macro-economy that provides absolutely no clarity on who you are targeting or why they should buy from you. Hire salespeople — sales and marketing are amplification tools; if your core message is that you are exactly the same as the vendor down the street but you promise you work harder, hiring more salespeople simply means you are paying more people to spread a weak message. Every item on that whiteboard was a good thing to do. But none of them were strategy.</p>
-<p>What happened in that meeting is the great illusion of the business world. Smart, capable, hardworking manufacturing teams sit in a room and completely confuse planning with strategy. Planning is figuring out how to do what you already do, but doing it slightly better, faster, or cheaper. Strategy is something entirely different: making explicit, difficult, and highly specific choices about where you will compete and how you will win against ruthless competitors who want to destroy you. You cannot plan your way to higher margins. You cannot budget your way out of commoditisation. To break away from the competition, you have to stop writing lists of internal initiatives and start making strategic choices.</p>`
+      type: 'companion',
+      companionInitial: 'R',
+      companionName: 'Ramesh Iyer',
+      companionTitle: 'Specialty chemicals · Ahmedabad',
+      body: `<p>Throughout this book, you will hear from <strong>Ramesh Iyer</strong> — a specialty chemicals manufacturer from Ahmedabad who is reading this book from ₹92 Crore, looking up at the ₹100 Crore threshold he is about to cross.</p>
+
+<p>Ramesh took over his father's generic chemical trading business in 2010. He noticed that two highly specific molecules — a corrosion inhibitor for oil pipeline maintenance and a specialty surfactant for textile wet processing — were being imported from Europe at a 35–40% premium, with no credible Indian alternative. He ran what he now calls his first accidental Thin-Slice: one batch, three mills, all three reordered. He never looked back.</p>
+
+<p>Today, Ramesh holds 28% of the Indian market for that surfactant and 41% of the domestic corrosion inhibitor segment. He built a version of the Vinati Organics archetype without knowing it had a name. Reading this book, he is seeing his own past decoded in case studies he did not know existed — and designing his next decade with clarity for the first time.</p>
+
+<p>At the end of each chapter, Ramesh will share one note from the GIDC Vatva estate — not advice, not a framework, just what this idea looks like from just below the ₹100 Crore line, in a specialty chemicals factory in Ahmedabad.</p>`,
     },
 
-    // 7 — About the Author
-    {
-      type:    'about',
-      heading: 'About the Author',
-      body:    `<p>Sudharsan K R is a Business Model &amp; Strategy Advisor working with Indian manufacturing MSMEs in the ₹10–50 Crore band.</p>
-<p>His advisory work focuses on helping manufacturing founders replace generic benchmarking with strategic architecture — building deeply interconnected systems that rivals cannot copy. He works directly alongside promoters, managing directors, and boards on strategic choice, capital commitment, and the transition from promoter-led execution to distributed decision capability.</p>
-<p>Stop Planning, Start Winning is the second book in The Manufacturing Strategy Series, which includes Why Great Manufacturers Stay Invisible, Don't Bet the Business, and Decoding the Rs. 100 Cr Breakthrough.</p>`
-    },
-
-    // 8 — Reader Form
-    {
-      type:    'form',
-      heading: 'Before we begin',
-      body:    'Tell Arjun a little about your business. He will share his notes from each chapter based on where you are right now.'
-    },
-
-    // 9 — Arjun Introduction
-    {
-      type:    'vikram',
-      heading: 'Meet Arjun Mehta',
-      body:    `<p>Arjun Mehta runs an electronics contract manufacturing unit in Chennai. ₹44 Crore now. Was at ₹28 Crore four years ago — generic PCB assembly for anyone who called, 8% EBITDA margins, procurement buyers treating him like a commodity.</p>
-<p>He made the painful choice to stop taking generic assembly work entirely and focus exclusively on medical device PCB assembly with full end-of-line functional testing. He fired 11 customers in one quarter. Survived a 9-month revenue dip — his worst year on paper, his best decision in hindsight.</p>
-<p>He is re-reading this book alongside you. After each chapter, he will share three notes from his own experience — what he remembers, what he got wrong, what he wishes he had understood earlier.</p>
-<p>He is not a consultant. He is a founder who made the exact choices this book describes — and lived through the consequences of making them.</p>`
-    }
   ]
-};
+}

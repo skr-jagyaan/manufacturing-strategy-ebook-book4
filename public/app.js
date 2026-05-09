@@ -1,5 +1,5 @@
 /* ============================================================
-   BOOK_TITLE
+   Decoding the Rs. 100 Cr Breakthrough
    app.js — SPA Brain
    Handles routing, navigation, transitions, localStorage
    ============================================================ */
@@ -7,7 +7,7 @@
 // ── CONSTANTS ──
 const RAILWAY_URL = 'BOOK_CLOUD_RUN_URL';
 const SHELF_URL   = 'https://manufacturing-shelf-65462349033.asia-south1.run.app'; // Redirect here if no valid session
-const TOTAL_CHAPTERS = 9;
+const TOTAL_CHAPTERS = 16;
 
 // ── STATE ──
 let currentChapter = null;   // chapter module currently loaded
@@ -198,11 +198,11 @@ async function loadChapter(num) {
 
   try {
     // Dynamically import the chapter module
-    const module = await import(`/chapters/ch${num}.js?v=BOOK_VERSION`);
+    const module = await import(`/chapters/ch${num}.js?v=4`);
     currentChapter = module.default;
 
     // Update bar
-    document.getElementById('bar-book').textContent = 'Book Two';
+    document.getElementById('bar-book').textContent = 'Book Four';
     document.getElementById('bar-sep').style.display = '';
     document.getElementById('bar-ch').textContent = currentChapter.barTitle;
     document.getElementById('bar-shelf-btn').style.display = 'inline-flex';
@@ -242,7 +242,7 @@ async function loadChapter(num) {
 async function loadOnboarding(startScreen = 0) {
   showLoader();
   try {
-    const module = await import('/onboarding/onboarding.js?v=BOOK_VERSION');
+    const module = await import('/onboarding/onboarding.js?v=4');
     currentChapter = module.default;
 
     // Push state so browser back doesn't trigger route() back to shelf
@@ -250,7 +250,7 @@ async function loadOnboarding(startScreen = 0) {
       history.pushState({}, '', '/read');
     }
 
-    document.getElementById('bar-book').textContent = 'BOOK_TITLE';
+    document.getElementById('bar-book').textContent = "Decoding the Rs. 100 Cr Breakthrough";
     document.getElementById('bar-sep').style.display = 'none';
     document.getElementById('bar-ch').textContent = '';
     document.getElementById('bar-shelf-btn').style.display = 'inline-flex';
@@ -283,12 +283,12 @@ async function loadOnboarding(startScreen = 0) {
 async function loadBackmatter() {
   showLoader();
   try {
-    const module = await import('/chapters/backmatter.js?v=BOOK_VERSION');
+    const module = await import('/chapters/backmatter.js?v=4');
     currentChapter = module.default;
 
-    document.getElementById('bar-book').textContent = 'Book Two';
+    document.getElementById('bar-book').textContent = 'Book Four';
     document.getElementById('bar-sep').style.display = '';
-    document.getElementById('bar-ch').textContent = 'BOOK_TITLE';
+    document.getElementById('bar-ch').textContent = "Decoding the Rs. 100 Cr Breakthrough";
     document.getElementById('bar-shelf-btn').style.display = 'inline-flex';
 
     buildScreens(currentChapter.screens);
@@ -307,10 +307,10 @@ async function loadBackmatter() {
 async function loadDiagnosis() {
   showLoader();
   try {
-    const module = await import('/chapters/diagnosis.js?v=BOOK_VERSION');
+    const module = await import('/chapters/diagnosis.js?v=4');
     const diag = module.default;
 
-    document.getElementById('bar-book').textContent = 'Book Two';
+    document.getElementById('bar-book').textContent = 'Book Four';
     document.getElementById('bar-sep').style.display = '';
     document.getElementById('bar-ch').textContent = 'Your Strategic Diagnosis';
     document.getElementById('bar-shelf-btn').style.display = 'inline-flex';
@@ -394,7 +394,7 @@ function renderScreen(screen, idx, total) {
         <div class="screen-body">
           <div class="exchange-wrap">
             <div class="exchange-title">Your 3 takeaways from Chapter ${currentChapter?.chapterNum || ''}</div>
-            <div class="exchange-sub">Share what struck you. Arjun will share what hit him when he first read this.</div>
+            <div class="exchange-sub">Share what struck you. Ramesh will share what hit him when he first read this.</div>
 
             <div id="reader-inputs">
               <div class="input-row">
@@ -420,17 +420,17 @@ function renderScreen(screen, idx, total) {
             </div>
 
             <div class="loading-state" id="loading-state">
-              <div class="agent-avatar">V</div>
+              <div class="agent-avatar">R</div>
               <div class="loading-text">
-                COMPANION_NAME is reviewing your notes
+                Ramesh is reviewing your notes
                 <span class="loading-dots"><span>.</span><span>.</span><span>.</span></span>
               </div>
             </div>
 
             <div class="agent-response" id="agent-response">
               <div class="agent-header-row">
-                <div class="agent-avatar">V</div>
-                <div class="agent-label">COMPANION_NAME <span>· sharing his notes</span></div>
+                <div class="agent-avatar">R</div>
+                <div class="agent-label">Ramesh <span>· sharing his notes</span></div>
               </div>
               <div class="agent-items">
                 <div class="agent-item" id="ai-1"><div class="agent-item-num">1</div><div class="agent-item-text" id="ai-text-1"></div></div>
@@ -451,7 +451,7 @@ function renderScreen(screen, idx, total) {
 
     case 'end': {
       const nextNum = (currentChapter?.chapterNum || 0) + 1;
-      const isLastChapter = currentChapter?.chapterNum === 9;
+      const isLastChapter = currentChapter?.chapterNum === 16;
       const nextBtn = isLastChapter
         ? `<button class="btn btn-primary" style="width:100%;justify-content:center;padding:13px"
              onclick="goToBackmatter()">
@@ -509,9 +509,9 @@ function renderScreen(screen, idx, total) {
         <div class="screen-body center">
           <div class="exchange-wrap">
             <div class="agent-header-row" style="margin-bottom:24px;">
-              <div class="agent-avatar">V</div>
+              <div class="agent-avatar">R</div>
               <div>
-                <div style="font:600 1rem/1 'Inter',sans-serif;color:var(--ink);margin-bottom:4px;">Arjun Mehta</div>
+                <div style="font:600 1rem/1 'Inter',sans-serif;color:var(--ink);margin-bottom:4px;">Ramesh Iyer</div>
                 <div style="font:400 0.8125rem/1 'Inter',sans-serif;color:var(--ink-3);">His closing notes</div>
               </div>
             </div>
@@ -529,7 +529,7 @@ function renderScreen(screen, idx, total) {
         <div class="screen-body">
           <div class="exchange-wrap">
             <div class="exchange-title">3 things this book changed for you</div>
-            <div class="exchange-sub">Not chapter takeaways — the whole book. What are the 3 things that will change how you run your business from this point forward? Arjun will share his 3 in return.</div>
+            <div class="exchange-sub">Not chapter takeaways — the whole book. What are the 3 things that will change how you run your business from this point forward? Ramesh will share his 3 in return.</div>
 
             <div id="reader-inputs">
               <div class="input-row">
@@ -553,14 +553,14 @@ function renderScreen(screen, idx, total) {
             </div>
 
             <div class="loading-state" id="loading-state">
-              <div class="agent-avatar">V</div>
-              <div class="loading-text">COMPANION_NAME is writing his final notes<span class="loading-dots"><span>.</span><span>.</span><span>.</span></span></div>
+              <div class="agent-avatar">R</div>
+              <div class="loading-text">Ramesh is writing his final notes<span class="loading-dots"><span>.</span><span>.</span><span>.</span></span></div>
             </div>
 
             <div class="agent-response" id="agent-response">
               <div class="agent-header-row">
-                <div class="agent-avatar">V</div>
-                <div class="agent-label">COMPANION_NAME <span>· his final notes</span></div>
+                <div class="agent-avatar">R</div>
+                <div class="agent-label">Ramesh <span>· his final notes</span></div>
               </div>
               <div class="agent-items">
                 <div class="agent-item" id="ai-1"><div class="agent-item-num">1</div><div class="agent-item-text" id="ai-text-1"></div></div>
@@ -586,7 +586,7 @@ function renderScreen(screen, idx, total) {
             <div class="end-check">↓</div>
             <div class="end-title">The Workbook</div>
             <div class="prose" style="margin-bottom:32px;">
-              <p>${(screen.body || "Download your Book Two workbook — a structured set of exercises to apply every strategic framework from this book to your own manufacturing business.").replace(/\n/g, '</p><p>')}</p>
+              <p>${(screen.body || "Download your Book Four workbook — a structured set of exercises to apply every strategic framework from this book to your own manufacturing business.").replace(/\n/g, '</p><p>')}</p>
             </div>
             <a href="/workbook.pdf" download id="workbook-download-btn" class="btn btn-primary" style="width:100%;justify-content:center;padding:13px;text-decoration:none;" onclick="markWorkbookDownloaded()">
               Download Workbook →
@@ -606,7 +606,7 @@ function renderScreen(screen, idx, total) {
             <div style="font:400 1rem/1 'Inter',sans-serif;color:var(--ink-3);margin-bottom:24px;letter-spacing:0.5px;text-transform:uppercase;">One more thing</div>
             <div class="end-title" style="margin-bottom:16px;">You have read every chapter.<br>You have shared your notes.</div>
             <div class="prose" style="margin-bottom:40px;text-align:left;">
-              <p>Everything you wrote — across all nine chapters — has been collected. Sudharsan will review it and deliver a personalised strategic diagnosis for your business.</p>
+              <p>Everything you wrote — across all sixteen chapters — has been collected. Sudharsan will review it and deliver a personalised strategic diagnosis for your business.</p>
               <p>This is not a generic summary. It is a diagnosis specific to what you shared, at your revenue stage, in your sector.</p>
             </div>
             <button class="btn btn-primary" style="width:100%;justify-content:center;padding:14px;font-size:1rem;" onclick="goToDiagnosis()">
@@ -643,7 +643,7 @@ function renderScreen(screen, idx, total) {
                 <div class="loader-dot"></div>
               </div>
               <div style="font:600 1.125rem/1.3 'Inter',sans-serif;color:var(--ink);margin-bottom:8px;">Sudharsan is reviewing your notes</div>
-              <div style="font:400 0.9375rem/1.6 'Inter',sans-serif;color:var(--ink-3);">Across all nine chapters. This takes a moment.</div>
+              <div style="font:400 0.9375rem/1.6 'Inter',sans-serif;color:var(--ink-3);">Across all sixteen chapters. This takes a moment.</div>
             </div>
             <div id="diag-error" style="display:none;">
               <div style="font:600 1.125rem/1.3 'Inter',sans-serif;color:var(--ink);margin-bottom:8px;">Something went wrong</div>
@@ -693,7 +693,7 @@ function renderScreen(screen, idx, total) {
         <div class="screen-footer">
           <span></span>
           <span class="screen-ctr">${idx + 1} of ${total}</span>
-          <button class="btn btn-primary" id="diag-next-btn" style="display:none" onclick="go(${idx}, ${idx + 1})">Continue →</button>
+          <button class="btn btn-primary" id="diag-next-btn" style="display:none" onclick="loadBackmatter(7)">Continue →</button>
         </div>`;
 
     case 'working-with-author':
@@ -722,9 +722,9 @@ function renderOnboardingScreen(screen, idx, total, prevBtn) {
       return `
         <div class="screen-body center">
           <div class="cover-wrap">
-            <div class="cover-series">The Manufacturing Strategy Series · Book Two of Four</div>
-            <div class="cover-title">BOOK_TITLE</div>
-            <div class="cover-subtitle">BOOK_SUBTITLE</div>
+            <div class="cover-series">The Manufacturing Strategy Series · Book Four of Four</div>
+            <div class="cover-title">Decoding the Rs. 100 Cr Breakthrough</div>
+            <div class="cover-subtitle">Strategic Architecture for Indian Manufacturing — From Growth Stage to Market Leadership</div>
             <div class="cover-rule"></div>
             <div class="cover-author">Sudharsan K R</div>
             <div class="cover-role">Business Model &amp; Strategy Advisor</div>
@@ -740,8 +740,8 @@ function renderOnboardingScreen(screen, idx, total, prevBtn) {
       return `
         <div class="screen-body">
           <div class="copy-wrap">
-            <div class="copy-title">BOOK_TITLE</div>
-            <div class="copy-sub">BOOK_SUBTITLE</div>
+            <div class="copy-title">Decoding the Rs. 100 Cr Breakthrough</div>
+            <div class="copy-sub">Strategic Architecture for Indian Manufacturing — From Growth Stage to Market Leadership</div>
             <div class="copy-rule"></div>
             <p class="copy-p">Copyright © 2026 by Sudharsan K R</p>
             <p class="copy-p">All rights reserved. No part of this publication may be reproduced, distributed, or transmitted in any form or by any means — including photocopying, recording, or other electronic or mechanical methods — without the prior written permission of the author, except in the case of brief quotations embodied in critical reviews and certain other non-commercial uses permitted by copyright law.</p>
@@ -854,14 +854,14 @@ function renderOnboardingScreen(screen, idx, total, prevBtn) {
         <div class="screen-body center">
           <div class="vikram-wrap">
             <div class="vikram-disclaimer">
-              COMPANION_NAME is a fictional character powered by an AI agent. Any resemblance to actual persons, businesses, or events is purely coincidental. COMPANION_NAME's responses are AI-generated and do not constitute professional business or strategy advice.
+              Ramesh Iyer is a fictional character powered by an AI agent. Any resemblance to actual persons, businesses, or events is purely coincidental. Ramesh's responses are AI-generated and do not constitute professional business or strategy advice.
             </div>
             <div class="vikram-card" id="vikram-card">
               <div class="vikram-header">
-                <div class="vikram-avatar">V</div>
+                <div class="vikram-avatar">R</div>
                 <div>
-                  <div class="vikram-name">Arjun Mehta</div>
-                  <div class="vikram-role">MD, Precision Components · Pune</div>
+                  <div class="vikram-name">Ramesh Iyer</div>
+                  <div class="vikram-role">Specialty Chemicals · Ahmedabad</div>
                 </div>
               </div>
               <div class="vikram-message" id="vikram-msg"></div>
@@ -1005,14 +1005,13 @@ function typeVikramIntro() {
   }[user.rev] || 'your stage';
 
   const intro =
-    `${user.name}, I'm Arjun. MD of an electronics contract manufacturing unit in Chennai. ` +
-    `We're at ₹52 Crore now — but I was stuck at ₹18 Crore for four years. ` +
-    `Good quality, loyal customers, 18-hour days, shrinking margins. ` +
-    `I read this book two years ago. It was uncomfortable.\n\n` +
-    `I'm reading it again alongside you.\n\n` +
+    `${user.name}, I'm Ramesh. I run a specialty chemicals business in Ahmedabad — GIDC Vatva. ` +
+    `We're at ₹92 Crore now. I took over a generic trading business in 2010 and spent fourteen years turning two obscure molecules into market-leading specialty chemicals. ` +
+    `I hold 41% of the domestic corrosion inhibitor segment and 28% of the specialty surfactant market. ` +
+    `I built this by instinct — the same way most of you are building. I'm reading this book to understand what I built and design the next decade with clarity.\n\n` +
     `After each chapter, we'll swap notes. You share what struck you running ` +
-    `${user.sector} at ${revLabel}. I'll share what hit me the first time — ` +
-    `and what I think matters most for where you are right now.`;
+    `${user.sector} at ${revLabel}. I'll share what it looks like from just below the ₹100 Crore line, ` +
+    `in a specialty chemicals factory in Ahmedabad, looking up at the companies this book decodes.`;
 
   const card  = document.getElementById('vikram-card');
   const msgEl = document.getElementById('vikram-msg');
@@ -1134,7 +1133,7 @@ async function submitBookTakeaways(nextScreenIdx) {
         userRev:      user.rev,
         userSector:   user.sector,
         chapter:      'book',
-        chapterTitle: 'BOOK_TITLE — Full Book',
+        chapterTitle: "Decoding the Rs. 100 Cr Breakthrough — Full Book",
         takeaways:    [t1, t2, t3],
         isBookLevel:  true
       })
