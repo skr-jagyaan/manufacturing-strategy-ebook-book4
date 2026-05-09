@@ -967,7 +967,7 @@ function goToBackmatter() {
 }
 
 function goToDiagnosis() {
-  navigate('/diagnosis');
+  navigate('/diagnosis', { force: true });
 }
 
 // ── DOTS ──
