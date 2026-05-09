@@ -1,7 +1,6 @@
 export default {
   screens: [
 
-    // ── COVER ────────────────────────────────────────────────────────────────
     {
       type: 'cover',
       seriesLabel: 'The Manufacturing Strategy Series',
@@ -11,7 +10,6 @@ export default {
       author: 'Sudharsan K R',
     },
 
-    // ── COPYRIGHT ────────────────────────────────────────────────────────────
     {
       type: 'copyright',
       seriesLine: 'The Manufacturing Strategy Series',
@@ -22,13 +20,11 @@ export default {
         'Book Four — Decoding the Rs. 100 Cr Breakthrough',
       ],
       copyrightLine: 'Copyright © 2026 by Sudharsan K R',
-      rights: 'All rights reserved. No part of this publication may be reproduced, distributed, or transmitted in any form or by any means — including photocopying, recording, or other electronic or mechanical methods — without the prior written permission of the author...', [cite: 11-12]
-      disclaimer: 'The case studies and financial analyses in this book draw on publicly available information about the companies discussed. They are intended as strategic frameworks for learning... composite scenarios based on real-world consulting experiences have been included.', [cite: 13-15]
+      rights: 'All rights reserved. No part of this publication may be reproduced, distributed, or transmitted in any form or by any means...',
+      disclaimer: 'The case studies and financial analyses in this book draw on publicly available information about the companies discussed. They are intended as strategic frameworks for learning... composite scenarios based on real-world consulting experiences have been included.',
       publishedLine: 'Published in India.',
     },
 
-    // ── TABLE OF CONTENTS ────────────────────────────────────────────────────
-    // FIXED: Added 'title' property and changed 'isPartHead' to 'isSection'
     {
       type: 'toc',
       items: [
@@ -56,49 +52,44 @@ export default {
       ],
     },
 
-    // ── PREFACE ──────────────────────────────────────────────────────────────
     {
       type: 'preface',
       heading: 'Preface',
       body: `<p>In my career, I have not just observed the engineering and manufacturing world from the sidelines — I have been in the middle of negotiating it.</p>
-             <p>The architecture of their success is entirely decodable. And once you can decode it, you can begin designing your own.</p>`, [cite: 18, 33]
+             <p>The architecture of their success is entirely decodable. And once you can decode it, you can begin designing your own.</p>`,
     },
 
-    // ── WHO SHOULD READ ──────────────────────────────────────────────────────
     {
       type: 'who',
       heading: 'Who Should Read This Book',
-      body: `<p>This is the fourth and final book in the Manufacturing Strategy Series. It shows you what the completed architecture looks like — the integrated strategic choices that define companies operating at Rs. 100 Crore scale and beyond.</p>`, [cite: 47-48]
+      body: `<p>This is the final book in the Manufacturing Strategy Series. It shows you what the completed architecture looks like — the integrated strategic choices that define companies operating at ₹100 Crore scale and beyond.</p>
+             <p>It is designed for founders at ₹15 to ₹50 Crore revenue who feel their business has hit a structural ceiling, as well as for the boards and advisors who guide them.</p>`,
     },
 
-    // ── ADDED: INTRODUCTION SCREEN 1 ─────────────────────────────────────────
     {
       type: 'intro',
       label: 'Introduction',
       heading: 'The Cargo Cult Trap',
       body: `<p>When growth-stage companies copy the surface-level actions of industry titans — buying 5-axis German CNC machines or expanding catalogues — without the underlying strategic architecture, they engage in <strong>Cargo Cult Strategy</strong>.</p>
-             <p>This practice produces debt and collapsed margins, not growth. To break through, you must stop looking at their machines and start looking at their choices.</p>`, [cite: 124, 128]
+             <p>This practice produces debt and collapsed margins, not growth. To break through, you must stop looking at their machines and start looking at their choices.</p>`,
     },
 
-    // ── ADDED: INTRODUCTION SCREEN 2 ─────────────────────────────────────────
     {
       type: 'intro',
       label: 'Introduction',
       heading: 'The Five Strategic Lenses',
-      body: `<p>Every successful Rs. 100 Crore manufacturer is decoded through five lenses: <strong>Where to Play, How to Win, Must-Have Capabilities, Trade-Offs,</strong> and <strong>Management Systems.</strong></p>
-             <p>These lenses strip away the surface to reveal the architecture beneath. Strategy is not a universal best practice; it is about unique positioning.</p>`, [cite: 131, 165]
+      body: `<p>Every successful ₹100 Crore manufacturer is decoded through five lenses: <strong>Where to Play, How to Win, Must-Have Capabilities, Trade-Offs,</strong> and <strong>Management Systems.</strong></p>
+             <p>These lenses strip away the surface to reveal the architecture beneath. Strategy is not a universal best practice; it is about unique positioning.</p>`,
     },
 
-    // ── ADDED: INTRODUCTION SCREEN 3 ─────────────────────────────────────────
     {
       type: 'intro',
       label: 'Introduction',
       heading: 'Your 90-Day Roadmap',
       body: `<p>Reading a book does not change a balance sheet — execution does. This book ends with a scientific methodology to design your own path.</p>
-             <p>We will move from generating strategic possibilities to isolating "Kill Zones" and running Thin-Slicing experiments to extract certainty before you commit capital.</p>`, [cite: 540, 604]
+             <p>We will move from generating strategic possibilities to isolating "Kill Zones" and running Thin-Slicing experiments to extract certainty before you commit capital.</p>`,
     },
 
-    // ── READER FORM ──────────────────────────────────────────────────────────
     {
       type: 'form',
       title: 'Before we begin',
@@ -117,7 +108,6 @@ export default {
       ],
     },
 
-    // ── COMPANION ────────────────────────────────────────────────────────────
     {
       type: 'companion',
       companionInitial: 'R',
