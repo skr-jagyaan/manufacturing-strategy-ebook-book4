@@ -868,7 +868,7 @@ function renderOnboardingScreen(screen, idx, total, prevBtn) {
                   <div class="vikram-role">${screen.companionTitle}</div>
                 </div>
               </div>
-              <div class="vikram-message" id="vikram-msg"></div>
+              <div class="vikram-message" id="vikram-msg">${screen.body || ""}</div>
             </div>
           </div>
         </div>
